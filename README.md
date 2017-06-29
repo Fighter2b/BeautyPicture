@@ -1,3 +1,3 @@
-# BeautyPicture
+# CodesBarn
 
-通过百度图片的链接加载图片的一个小Demo
+存放一些代码片段
