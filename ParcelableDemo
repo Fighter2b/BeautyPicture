@@ -1,0 +1,219 @@
+package com.cz2030.coolchat.model;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+/**
+ * Parcelable Demo
+ * @author Administrator
+ */
+public class CollectionModel implements Parcelable {
+
+    private int id;
+    private int type;
+    private String userId;
+    private String fromUserId;
+    private String photo;
+    private String nickName;
+    private String content;
+    private String addTime;
+    private String bigTxt;
+    private int voiceTime;
+    private String videoCover;
+    private String secret;
+    private boolean isSelected;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getBigTxt() {
+        return bigTxt;
+    }
+
+    public void setBigTxt(String bigTxt) {
+        this.bigTxt = bigTxt;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(String addTime) {
+        this.addTime = addTime;
+    }
+
+    public String getFromUserId() {
+        return fromUserId;
+    }
+
+    public void setFromUserId(String fromUserId) {
+        this.fromUserId = fromUserId;
+    }
+
+    public int getVoiceTime() {
+        return voiceTime;
+    }
+
+    public void setVoiceTime(int voiceTime) {
+        this.voiceTime = voiceTime;
+    }
+
+    public String getVideoCover() {
+        return videoCover;
+    }
+
+    public void setVideoCover(String videoCover) {
+        this.videoCover = videoCover;
+    }
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean flag = obj instanceof CollectionModel;
+        if (flag == false) {
+            return false;
+        }
+        CollectionModel collectionModel = (CollectionModel) obj;
+        if (this.getId() == collectionModel.getId() && this.getUserId()
+                                                           .equals(collectionModel.getUserId())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public CollectionModel() {
+        
+    }
+
+    public CollectionModel(int id, int type, String userId, String fromUserId, String photo,
+                           String nickName, String content, String addTime, String bigTxt,
+                           int voiceTime, String videoCover, String secret, boolean isSelected) {
+        this.id = id;
+        this.type = type;
+        this.userId = userId;
+        this.fromUserId = fromUserId;
+        this.photo = photo;
+        this.nickName = nickName;
+        this.content = content;
+        this.addTime = addTime;
+        this.bigTxt = bigTxt;
+        this.voiceTime = voiceTime;
+        this.videoCover = videoCover;
+        this.secret = secret;
+        this.isSelected = isSelected;
+    }
+
+    public CollectionModel(Parcel source) {
+        id = source.readInt();
+        type = source.readInt();
+        userId = source.readString();
+        fromUserId = source.readString();
+        photo = source.readString();
+        nickName = source.readString();
+        content = source.readString();
+        addTime = source.readString();
+        bigTxt = source.readString();
+        voiceTime = source.readInt();
+        videoCover = source.readString();
+        secret = source.readString();
+        isSelected = source.readByte() != 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(type);
+        dest.writeString(userId);
+        dest.writeString(fromUserId);
+        dest.writeString(photo);
+        dest.writeString(nickName);
+        dest.writeString(content);
+        dest.writeString(addTime);
+        dest.writeString(bigTxt);
+        dest.writeInt(voiceTime);
+        dest.writeString(videoCover);
+        dest.writeString(secret);
+        dest.writeByte((byte) (isSelected ? 1 : 0));//if isSelected == true, byte == 1
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Parcelable.Creator<CollectionModel> CREATOR = new Parcelable.Creator<CollectionModel>() {
+
+        // 在该方法中从Parcel中恢复之前写入的JavaBean
+        @Override
+        public CollectionModel createFromParcel(Parcel source) {
+            return new CollectionModel(source);
+        }
+
+        // 估计本方法是供外部类反序列化本类数组使用
+        @Override
+        public CollectionModel[] newArray(int size) {
+            return new CollectionModel[size];
+        }
+    };
+}
